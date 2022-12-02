@@ -412,7 +412,7 @@ console.log(number); // Log ra giá trị number hiện tại là 2
 
 </details>
 
-## 17. Nội suy chuỗi với Tagg Template Literal trong ES6 là gì?
+## 17. Nội suy chuỗi với Tag Template Literal trong ES6 là gì?
 
 ```js
 function getPersonInfo(one, two, three) {
