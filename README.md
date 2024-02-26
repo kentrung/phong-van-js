@@ -1012,6 +1012,40 @@ setInterval(() => console.log("Hi"), 1000);
 - Note: Nếu không sử dụng toán tử Spread. Bạn cũng có thể tách ký tự bằng phương thức split
 </details>
 
+
+## 44. Tìm hiểu new Promise
+
+```js
+console.log(1)
+
+setTimeout(() => console.log(2), 0)
+
+new Promise(resolve => {
+  console.log(3)
+  resolve()
+}).then(() => console.log(4))
+
+console.log(5)
+```
+Thứ tự log sẽ như nào?
+<details><summary>Đáp án</summary>
+
+```js
+console.log(1)
+console.log(3)
+console.log(5)
+console.log(4)
+console.log(2)
+```
+- log 1 xuất ra đầu tiên
+- log 2 là `setTimeout` với thời gian là `0ms` nên func callback sẽ được đẩy luôn vào queue đợi (macro queue) nên sẽ xuất hiện sau
+- khi khởi tạo `new Promise` và truyền vào func thì bên trong func sẽ được gọi luôn nên log 3 sẽ ra tiếp theo sau đó run tham số `resolve()`
+- kết quả của `new Promise` trả về 1 Promise, các func callback sẽ được đẩy vào queue đợi (micro queue) nên log 4 sẽ xuất hiện sau
+- sau đó log 5
+- sau khi quét qua toàn bộ file, call stack rỗng thì mới đến lượt `event loop` đẩy các func callback từ queue vào
+- tại thời điểm này thì queue đã có 2 cái đợi ở micro và macro, micro được ưu tiên hơn log 4 sẽ xuất hiện
+- tiếp theo là log 2
+</details>
 ---
 
 Tham khảo bài viết gốc: https://niithanoi.edu.vn/43-cau-hoi-javascript-nang-cao.html
