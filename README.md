@@ -1046,6 +1046,28 @@ console.log(2)
 - tại thời điểm này thì queue đã có 2 cái đợi ở micro và macro, micro được ưu tiên hơn log 4 sẽ xuất hiện
 - tiếp theo là log 2
 </details>
+
+## 45. Tìm hiểu fetch
+```js
+console.log(1)
+
+setTimeout(() => console.log(2), 0)
+
+fetch('https://api.github.com/users')
+  .then(response => console.log(3, response))
+
+console.log(4)
+```
+Thứ tự log sẽ như nào?
+<details><summary>Đáp án</summary>
+
+```js
+console.log(1)
+console.log(4)
+console.log(2)
+console.log(3)
+```
+</details>
 ---
 
 Tham khảo bài viết gốc: https://niithanoi.edu.vn/43-cau-hoi-javascript-nang-cao.html
