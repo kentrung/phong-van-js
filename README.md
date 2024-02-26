@@ -1068,6 +1068,41 @@ console.log(2)
 console.log(3)
 ```
 </details>
+
+## 46. Tìm hiểu fetch 2
+```js
+console.log(1)
+
+setTimeout(() => console.log(2), 0)
+
+fetch('https://api.github.com/users')
+  .then(response => console.log(3))
+
+block5Seconds()
+function block5Seconds() {
+  const start = new Date().getTime()
+  while(true) {
+    const end = new Date().getTime()
+    if(end - start > 5000) {
+      break
+    }
+  }
+  console.log(4)
+}
+
+console.log(5)
+```
+Thứ tự log sẽ như nào?
+<details><summary>Đáp án</summary>
+
+```js
+console.log(1)
+console.log(4)
+console.log(5)
+console.log(3)
+console.log(2)
+```
+</details>
 ---
 
 Tham khảo bài viết gốc: https://niithanoi.edu.vn/43-cau-hoi-javascript-nang-cao.html
